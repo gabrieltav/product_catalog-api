@@ -1,8 +1,9 @@
-import { MiddlewareConsumer, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './modules/users/users.module';
 import configuration from './config/configuration';
+import { OperatorModule } from './modules/operator/operator.module';
 
 
 @Module({
@@ -26,6 +27,7 @@ import configuration from './config/configuration';
       inject: [ConfigService],
     }),
     UsersModule,
+    OperatorModule,
   ],
   controllers: [],
   providers: [],

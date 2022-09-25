@@ -1,10 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Operator } from 'src/modules/operator/entities/operator.entity';
 
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -46,6 +49,11 @@ export class User extends BaseEntity {
   @Column({ nullable: true, type: 'date' })
   @ApiProperty()
   birth_date: Date;
+
+  @OneToOne(() => Operator, (operator) => operator.user)
+  @ApiProperty()
+  @JoinColumn()
+  operator: Operator;
 
   @CreateDateColumn()
   @ApiProperty()

@@ -6,4 +6,14 @@ import { IUserRepository } from '../interfaces/IUserRepository';
 export class UserRepository
   extends Repository<User>
   implements IUserRepository {
+
+      async getAllOperator(): Promise<User[]> {
+      const operators = await this.createQueryBuilder('users')
+          .where({ role: 'ROLE_OPERATOR' })
+          .orderBy({
+              'users.name':'ASC'
+          })
+          .getMany()
+      return operators  
+  }
 }
